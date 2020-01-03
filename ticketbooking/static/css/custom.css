@@ -1,0 +1,65 @@
+.booking {
+  height: 110px;
+  background-color: #f0c0b6;
+  margin-top: 20px;
+}
+
+.seats
+{
+  min-height: 120px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+
+}
+
+.empty
+{
+  background-color: yellow;
+}
+
+.booked
+{
+  background: lightgray;
+}
+
+.hold
+{
+  background-color: orange;
+}
+
+#loader {
+    position: fixed;
+    width: 100%;
+    display: none;
+    background: rgba(0, 0, 0, 0.8);
+    top: 0;
+    left: 0;
+    right: 0;
+    border: 0;
+    height: 100%;
+    z-index: 99;
+}
+
+#loader #loader-inner1
+{
+    display: table;
+    vertical-align: middle;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+#loader #loader-inner2
+{
+    display: table-cell;
+    vertical-align: middle;
+    height: 100%;
+    width: auto;
+}
+.custom-hide
+{
+    display:none;
+    color : red;
+}

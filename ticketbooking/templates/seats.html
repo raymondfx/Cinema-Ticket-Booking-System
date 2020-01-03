@@ -1,0 +1,15 @@
+<div class="row">
+{% for i in range(1,no_of_seats+1) %}
+<div class="col-md-3 text-center">
+    {% if i in list_of_seats %}
+      <div class="booked seats" id="{{ i }}">
+        {{i}}
+      </div>
+    {% else %}
+      <div class="empty seats" id="{{ i }}">
+        {{i}}
+      </div>
+    {% endif %}
+</div>
+{% endfor %}
+</div>

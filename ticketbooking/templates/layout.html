@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Ticket Booking</title>
+  <link href="{{ url_for('static',filename = 'css/bootstrap.css')}}" rel="stylesheet">
+  <link href="{{ url_for('static',filename = 'css/custom.css')}}" rel="stylesheet">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Cinema Ticket Booking</a>
+    </div>
+</nav>
+<!-- for displaying seats -->
+<article class="content-section">
+    <div class="col-md-12" id="bk_seat_nos">
+        {% include 'seats.html' %}
+    </div>
+    <div class="col-md-12 mt-2">
+        <button id="book_now" class="btn btn-lg btn-primary">Book Now</button>
+    </div>
+</article>
+
+
+
+<!--  Modal for booking tickets-->
+<div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >Enter name and email to confirm booking:</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            <form id="booking_form" method="POST" action="">
+                <input name="seat_no" type="hidden" id="seat_no">
+                    {{ form.csrf_token }}
+                    <div class="modal-body">
+                        <div id="bk_seat_text"></div>
+                        <div class="md-form mb-3">
+                            {{ form.name.label(class="form-control-label") }}
+                            {{ form.name(class_="form-control inputElm") }}
+                            <div id="name_error" class="custom-hide"></div>
+                        </div>
+                        <div class="md-form mb-3">
+                            {{ form.email.label(class="form-control-label") }}
+                            {{ form.email(class_="form-control inputElm") }}
+                            <div id="email_error" class="custom-hide"></div>
+                        </div>
+                    </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="bk_submit" >
+                    Confirm Booking
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--  Modal for cancelling ticket -->
+<div class="modal fade" id="cancellationModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ticket Cancellation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="cancellation_form" method="POST" action="">
+                    <input name="seat_no" type="hidden" id="seat_no1">
+                    {{ form.csrf_token }}
+                    <div class="modal-body">
+                        <div id="seatMsg" class="mb-3"></div>
+                        <div class="md-form mb-3">
+                            {{ form.email.label(class="form-control-label") }}
+                            {{ form.email(class_="form-control inputElm") }}
+                            <div id="email_error" class="custom-hide"></div>
+                        </div>
+                    </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="cn_booking">
+                     unbook
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+ <div id="loader">
+    <div id="loader-inner1">
+        <div id="loader-inner2">
+            <img src="{{ url_for('static', filename='images/loader.gif') }}" alt="loader" width="250" height="250"/>
+        </div>
+    </div>
+</div>
+    <!-- Bootstrap core JavaScript -->
+<script src="{{ url_for('static', filename = 'js/jquery.js') }}"></script>
+<script src="{{ url_for('static', filename = 'js/bootstrap.js') }}"></script>
+<script src="{{ url_for('static', filename = 'js/theatre.js') }}"></script>
+
+</body>
+
+</html>
